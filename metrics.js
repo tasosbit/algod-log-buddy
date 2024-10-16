@@ -61,6 +61,10 @@ try {
 
 const header = ['metric', ...Object.keys(metricsData).map((f, i) => i>0 ? `${f},delta` : f)].join(',');
 const rows = [];
+if (!Object.keys(metricsData).length) {
+  console.warn("No metrics found");
+  process.exit(1);
+}
 const firstMetricsData = metricsData[Object.keys(metricsData)[0]];
 const fields = Object.keys(firstMetricsData);
 for(const field of fields) {
